@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Check JavaScript
+        run: node --check app.js
+
+      - name: Smoke static site
+        run: |
+          python3 -m http.server 4173 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          sleep 1
+          curl --fail --silent --show-error http://127.0.0.1:4173/ >/tmp/aump-site.html
+          curl --fail --silent --show-error http://127.0.0.1:4173/styles.css >/tmp/aump-site.css
+          curl --fail --silent --show-error http://127.0.0.1:4173/app.js >/tmp/aump-site.js

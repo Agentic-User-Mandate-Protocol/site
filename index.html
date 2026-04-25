@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AUMP Documentation</title>
+    <meta
+      name="description"
+      content="Agentic User Mandate Protocol documentation, conformance, SDKs, and agentic marketplace proof."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#content">Skip to content</a>
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">A</span>
+        <div>
+          <strong>AUMP</strong>
+          <span>Agentic User Mandate Protocol</span>
+        </div>
+      </div>
+      <nav class="topnav" aria-label="Primary">
+        <a href="#overview">Overview</a>
+        <a href="#conformance">Conformance</a>
+        <a href="#bridges">Bridges</a>
+        <a href="#sdks">SDKs</a>
+        <a href="#proof">Proof</a>
+      </nav>
+    </header>
+
+    <main id="content" class="layout">
+      <aside class="rail" aria-label="Repository map">
+        <p class="eyebrow">Workspace</p>
+        <ol class="repo-list">
+          <li><a href="https://github.com/Agentic-User-Mandate-Protocol/spec">spec</a><span>v0.1 authority model</span></li>
+          <li><a href="https://github.com/Agentic-User-Mandate-Protocol/conformance">conformance</a><span>runnable contract</span></li>
+          <li><a href="https://github.com/Agentic-User-Mandate-Protocol/aump-py">aump-py</a><span>Python SDK</span></li>
+          <li><a href="https://github.com/Agentic-User-Mandate-Protocol/aump-js">aump-js</a><span>TypeScript SDK</span></li>
+          <li><a href="https://github.com/Agentic-User-Mandate-Protocol/examples">examples</a><span>agentic proof</span></li>
+        </ol>
+      </aside>
+
+      <section class="content">
+        <section id="overview" class="intro">
+          <div class="intro-copy">
+            <p class="eyebrow">Protocol Position</p>
+            <h1>AUMP is the user mandate layer for agentic systems.</h1>
+            <p>
+              MCP gives agents tools, A2A lets agents discover and message each
+              other, and UCP/AP2 handle commerce and payment boundaries. AUMP
+              defines what an agent is allowed to want, reveal, concede, commit,
+              escalate, refuse, and prove for a user.
+            </p>
+          </div>
+          <div class="status-panel" aria-label="Current implementation state">
+            <div><strong>Spec</strong><span>Draft v0.1</span></div>
+            <div><strong>Conformance</strong><span>22/22 passing</span></div>
+            <div><strong>SDKs</strong><span>Python and TypeScript</span></div>
+            <div><strong>Proof</strong><span>Marketplace flow passing</span></div>
+          </div>
+        </section>
+
+        <section class="protocol-map" aria-labelledby="map-title">
+          <div>
+            <p class="eyebrow">How It Composes</p>
+            <h2 id="map-title">AUMP does not replace existing agent protocols.</h2>
+          </div>
+          <div class="map-grid">
+            <article>
+              <span>MCP</span>
+              <h3>Tool and context access</h3>
+              <p>Agents call tools such as <code>aump.evaluate_action</code> before taking material steps.</p>
+            </article>
+            <article>
+              <span>A2A</span>
+              <h3>Agent discovery and messages</h3>
+              <p>Messages carry mandate metadata without leaking private mandate contents.</p>
+            </article>
+            <article class="mandate-node">
+              <span>AUMP</span>
+              <h3>User authority and evidence</h3>
+              <p>The portable contract for preferences, limits, disclosure, escalation, and audit logs.</p>
+            </article>
+            <article>
+              <span>UCP/AP2</span>
+              <h3>Commerce and payment boundary</h3>
+              <p>Checkout-ready or payment-sensitive actions escalate instead of becoming silent commits.</p>
+            </article>
+          </div>
+        </section>
+
+        <section id="conformance" class="workbench" aria-labelledby="conformance-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Conformance</p>
+              <h2 id="conformance-title">The contract SDKs must pass.</h2>
+            </div>
+            <code>uv run aump-conformance validate fixtures</code>
+          </div>
+
+          <div class="split">
+            <div class="text-block">
+              <h3>What conformance proves</h3>
+              <p>
+                Conformance proves that independent implementations agree on
+                schema validation, lifecycle checks, policy decisions, bridge
+                metadata, protected disclosure handling, budget limits, and
+                escalation boundaries.
+              </p>
+              <h3>What it does not prove</h3>
+              <p>
+                It does not prove that a live model will always negotiate well.
+                Agent behavior is proven by examples and production integrations
+                that call the mandate evaluator before acting.
+              </p>
+            </div>
+            <div class="console" aria-label="Conformance summary">
+              <div class="console-row"><span>valid mandates</span><strong>pass</strong></div>
+              <div class="console-row"><span>invalid mandates</span><strong>rejected</strong></div>
+              <div class="console-row"><span>allowed action</span><strong>allowed</strong></div>
+              <div class="console-row"><span>over-budget action</span><strong>denied</strong></div>
+              <div class="console-row"><span>checkout handoff</span><strong>requires escalation</strong></div>
+              <div class="console-row total"><span>fixtures</span><strong>22/22</strong></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="evaluator" aria-labelledby="evaluator-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Interactive Workbench</p>
+              <h2 id="evaluator-title">Evaluate common agent actions.</h2>
+            </div>
+            <button id="evaluate-button" type="button">Evaluate</button>
+          </div>
+          <div class="evaluator-grid">
+            <label>
+              Scenario
+              <select id="scenario-select">
+                <option value="accept">Accept ping pong balls for 3 USD</option>
+                <option value="overBudget">Offer 7 USD with a 5 USD hard cap</option>
+                <option value="disclosure">Reveal seller reservation price</option>
+                <option value="checkout">Prepare checkout handoff</option>
+              </select>
+            </label>
+            <pre id="decision-output" aria-live="polite"></pre>
+          </div>
+        </section>
+
+        <section id="bridges" aria-labelledby="bridges-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Bridge Rules</p>
+              <h2 id="bridges-title">Portable metadata, not private prompt leakage.</h2>
+            </div>
+          </div>
+          <div class="rule-grid">
+            <article>
+              <h3>MCP</h3>
+              <p>Expose mandate evaluation as a tool boundary and return structured decisions.</p>
+              <code>aump.evaluate_action</code>
+            </article>
+            <article>
+              <h3>A2A</h3>
+              <p>Attach mandate references and evidence identifiers to messages.</p>
+              <code>metadata.aump.mandate_hash</code>
+            </article>
+            <article>
+              <h3>UCP/AP2</h3>
+              <p>Pass only reference metadata into checkout and payment flows.</p>
+              <code>requires_escalation</code>
+            </article>
+          </div>
+        </section>
+
+        <section id="sdks" aria-labelledby="sdk-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">SDKs</p>
+              <h2 id="sdk-title">Implementations consume the same fixture corpus.</h2>
+            </div>
+          </div>
+          <div class="commands">
+            <pre><code>cd conformance
+uv run aump-conformance validate fixtures</code></pre>
+            <pre><code>cd aump-py
+uv run ruff check .
+uv run pytest</code></pre>
+            <pre><code>cd aump-js
+npm run lint
+npm test</code></pre>
+            <pre><code>cd examples
+uv run aump-examples marketplace</code></pre>
+          </div>
+        </section>
+
+        <section id="proof" aria-labelledby="proof-title">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Agentic Proof</p>
+              <h2 id="proof-title">Marketplace flow with enforced mandate decisions.</h2>
+            </div>
+            <code>proof: passed</code>
+          </div>
+          <ol class="timeline">
+            <li><strong>Conformance gate</strong><span>22 fixture cases pass before the scenario starts.</span></li>
+            <li><strong>Offer</strong><span>Buyer offers 3 USD for 19 ping pong balls under mandate authority.</span></li>
+            <li><strong>A2A message</strong><span>Message includes safe AUMP metadata, not private instructions.</span></li>
+            <li><strong>MCP evaluation</strong><span>Buyer accepts only after <code>aump.evaluate_action</code> returns allowed.</span></li>
+            <li><strong>Denials</strong><span>Over-budget offer and protected disclosure both return denied.</span></li>
+            <li><strong>Escalation</strong><span>Checkout handoff requires human confirmation before commitment.</span></li>
+          </ol>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
