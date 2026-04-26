@@ -4,7 +4,7 @@ const scenarios = {
     amount: "3.00 USD",
     decision: "allowed",
     reason_codes: ["within_budget", "authority_scope_match"],
-    next_step: "send acceptance with A2A mandate metadata",
+    next_step: "send acceptance with A2A extension-scoped mandate metadata",
   },
   overBudget: {
     action: "make_offer",

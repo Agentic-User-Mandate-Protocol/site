@@ -164,7 +164,7 @@
             <article>
               <h3>A2A</h3>
               <p>Attach mandate references and evidence identifiers to messages.</p>
-              <code>message.metadata.aump_mandate_hash</code>
+              <code>A2A-Extensions + message.extensions</code>
             </article>
             <article>
               <h3>UCP/AP2</h3>
@@ -183,6 +183,7 @@
           </div>
           <div class="commands">
             <pre><code>cd conformance
+go run ./cmd/aump-conformance validate fixtures
 uv run aump-conformance validate fixtures</code></pre>
             <pre><code>cd aump-py
 uv run ruff check .
@@ -204,9 +205,9 @@ uv run aump-examples marketplace</code></pre>
             <code>proof: passed</code>
           </div>
           <ol class="timeline">
-            <li><strong>Conformance gate</strong><span>22 fixture cases pass before the scenario starts.</span></li>
+            <li><strong>Conformance gate</strong><span>24 fixture cases pass before the scenario starts.</span></li>
             <li><strong>Offer</strong><span>Buyer offers 3 USD for 19 ping pong balls under mandate authority.</span></li>
-            <li><strong>A2A message</strong><span>Message includes safe AUMP metadata, not private instructions.</span></li>
+            <li><strong>A2A message</strong><span>Message activates the AUMP extension and carries a safe mandate reference.</span></li>
             <li><strong>MCP evaluation</strong><span>Buyer accepts only after <code>aump.evaluate_action</code> returns allowed.</span></li>
             <li><strong>Denials</strong><span>Over-budget offer and protected disclosure both return denied.</span></li>
             <li><strong>Escalation</strong><span>Checkout handoff requires human confirmation before commitment.</span></li>

@@ -9,7 +9,7 @@ This repo is intentionally static for the first public pass. Open
 
 - where AUMP fits beside MCP, A2A, UCP, and AP2;
 - how to run the conformance contract;
-- how the Python and TypeScript SDKs consume the conformance fixtures;
+- how the Go, Python, and TypeScript implementations consume the conformance fixtures;
 - what the marketplace proof demonstrates for agentic commerce;
 - which outcomes are proven by conformance versus the runnable examples.
 
