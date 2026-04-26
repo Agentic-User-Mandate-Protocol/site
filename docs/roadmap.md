@@ -6,10 +6,12 @@ enterprise adoption needs a larger surface.
 ## Done
 
 - Draft v0.1 specification.
-- JSON Schemas for mandate, profile, and action evaluation.
+- JSON Schemas for mandate, profile, action evaluation, and evidence events.
 - MCP, A2A, and UCP/AP2 binding drafts.
 - Native Go conformance runner.
 - Python conformance parity runner.
+- Evidence conformance cases for mandate matching, retention, and private-field
+  leakage.
 - Python SDK with runtime helpers.
 - TypeScript SDK with policy and bridge helpers.
 - Marketplace proof example.
@@ -21,7 +23,6 @@ enterprise adoption needs a larger surface.
 - Add full REST binding examples.
 - Add mandate signing examples and canonical JSON guidance.
 - Add revocation freshness fixtures.
-- Add evidence event schema and conformance cases.
 - Add negative prompt-injection fixtures for protected field leakage.
 - Add CI badges and release tags across all repos.
 - Add package publishing workflow for Python and TypeScript.
