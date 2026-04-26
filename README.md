@@ -3,7 +3,8 @@
 Documentation website for the Agentic User Mandate Protocol.
 
 This repo is intentionally static for the first public pass. Open
-`index.html` directly in a browser, or serve the folder with any static server.
+`public/index.html` directly in a browser, or serve the `public` folder with
+any static server.
 
 ## What It Covers
 
@@ -17,13 +18,13 @@ This repo is intentionally static for the first public pass. Open
 ## Local Use
 
 ```bash
-open index.html
+open public/index.html
 ```
 
 Optional static server:
 
 ```bash
-python3 -m http.server 4173
+python3 -m http.server --bind 127.0.0.1 --directory public 4173
 ```
 
 Then open `http://localhost:4173`.
@@ -31,7 +32,16 @@ Then open `http://localhost:4173`.
 ## Validation
 
 ```bash
-node --check app.js
+node --check public/app.js
 ```
 
 The site has no build step and no runtime dependencies.
+
+## Cloudflare Deploy
+
+Wrangler serves the static docs from `public/` and binds the Worker to the
+production custom domains:
+
+```bash
+npx --yes wrangler deploy
+```

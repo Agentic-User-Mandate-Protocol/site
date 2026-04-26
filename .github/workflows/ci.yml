@@ -19,14 +19,17 @@ jobs:
           node-version: 24
 
       - name: Check JavaScript
-        run: node --check app.js
+        run: node --check public/app.js
 
       - name: Smoke static site
         run: |
-          python3 -m http.server 4173 &
+          python3 -m http.server --bind 127.0.0.1 --directory public 4173 &
           server_pid=$!
           trap 'kill "$server_pid"' EXIT
-          sleep 1
+          for _ in {1..20}; do
+            curl --fail --silent http://127.0.0.1:4173/ >/tmp/aump-site.html && break
+            sleep 0.25
+          done
           curl --fail --silent --show-error http://127.0.0.1:4173/ >/tmp/aump-site.html
           curl --fail --silent --show-error http://127.0.0.1:4173/styles.css >/tmp/aump-site.css
           curl --fail --silent --show-error http://127.0.0.1:4173/app.js >/tmp/aump-site.js
