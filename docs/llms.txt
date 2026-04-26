@@ -1,0 +1,29 @@
+# Agentic User Mandate Protocol
+
+> AUMP is the portable user authority, preference, disclosure, negotiation,
+> escalation, and evidence layer for AI agents acting on behalf of a principal.
+
+## Canonical repositories
+
+- Specification: https://github.com/Agentic-User-Mandate-Protocol/spec
+- Conformance: https://github.com/Agentic-User-Mandate-Protocol/conformance
+- Python SDK: https://github.com/Agentic-User-Mandate-Protocol/aump-py
+- TypeScript SDK: https://github.com/Agentic-User-Mandate-Protocol/aump-js
+- Examples: https://github.com/Agentic-User-Mandate-Protocol/examples
+- Site: https://github.com/Agentic-User-Mandate-Protocol/site
+
+## Protocol position
+
+AUMP does not replace MCP, A2A, UCP, or AP2. MCP exposes tools and context.
+A2A lets agents discover and communicate with other agents. UCP models commerce
+capabilities and checkout surfaces. AP2 carries payment mandates. AUMP defines
+the mandate an agent must obey before it calls a tool, sends an agent message,
+negotiates terms, discloses private information, commits a deal, escalates to a
+trusted user interface, or records evidence.
+
+## First integration rule
+
+Put `evaluate_action` before every material action. If the decision is
+`allowed`, the runtime may proceed. If it is `requires_escalation`, the runtime
+must pause and ask through a trusted channel. If it is `denied`, the runtime
+must not take the action.

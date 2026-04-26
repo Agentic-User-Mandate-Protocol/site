@@ -14,12 +14,15 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v6
+      - uses: actions/setup-python@v6
         with:
-          node-version: 24
+          python-version: "3.13"
 
-      - name: Check JavaScript
-        run: node --check public/app.js
+      - name: Install docs dependencies
+        run: pip install -r requirements-docs.txt
+
+      - name: Build docs
+        run: mkdocs build --strict --site-dir public
 
       - name: Smoke static site
         run: |
@@ -31,5 +34,7 @@ jobs:
             sleep 0.25
           done
           curl --fail --silent --show-error http://127.0.0.1:4173/ >/tmp/aump-site.html
-          curl --fail --silent --show-error http://127.0.0.1:4173/styles.css >/tmp/aump-site.css
-          curl --fail --silent --show-error http://127.0.0.1:4173/app.js >/tmp/aump-site.js
+          curl --fail --silent --show-error http://127.0.0.1:4173/specification/action-evaluation/ >/tmp/aump-action.html
+          curl --fail --silent --show-error http://127.0.0.1:4173/bindings/a2a/ >/tmp/aump-a2a.html
+          curl --fail --silent --show-error http://127.0.0.1:4173/conformance/ >/tmp/aump-conformance.html
+          curl --fail --silent --show-error http://127.0.0.1:4173/llms.txt >/tmp/aump-llms.txt

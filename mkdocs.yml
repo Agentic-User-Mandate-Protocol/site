@@ -1,0 +1,109 @@
+site_name: Agentic User Mandate Protocol
+site_url: https://usermandateprotocol.com/
+site_description: >
+  AUMP is the user mandate layer for agentic systems: portable authority,
+  preference, disclosure, negotiation, escalation, and evidence for agents
+  acting on behalf of users.
+site_author: Agentic User Mandate Protocol
+site_dir: public
+edit_uri: edit/main/docs/
+
+repo_name: Agentic-User-Mandate-Protocol
+repo_url: https://github.com/Agentic-User-Mandate-Protocol
+
+nav:
+  - Home: index.md
+  - Learn:
+      - What is AUMP?: topics/what-is-aump.md
+      - Architecture: topics/architecture.md
+      - Core Concepts: topics/core-concepts.md
+      - Life of a Mandate: topics/life-of-a-mandate.md
+      - Enterprise Ready: topics/enterprise-ready.md
+  - Get Started:
+      - Quickstart: getting-started/quickstart.md
+      - Agent Loop Integration: getting-started/agent-loop.md
+  - Specification:
+      - Overview: specification/overview.md
+      - Mandate Object: specification/mandate.md
+      - Action Evaluation: specification/action-evaluation.md
+      - Evidence Events: specification/evidence.md
+  - Bindings:
+      - MCP: bindings/mcp.md
+      - A2A: bindings/a2a.md
+      - UCP and AP2: bindings/ucp-ap2.md
+  - Conformance:
+      - Suite Overview: conformance/index.md
+  - SDKs:
+      - Overview: sdks/index.md
+      - Python: sdks/python.md
+      - TypeScript: sdks/typescript.md
+  - Examples:
+      - Marketplace Proof: examples/marketplace.md
+  - Security: security.md
+  - Governance: governance.md
+  - Roadmap: roadmap.md
+
+theme:
+  name: material
+  language: en
+  font:
+    text: Inter
+    code: Roboto Mono
+  features:
+    - announce.dismiss
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    - navigation.footer
+    - navigation.indexes
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.path
+    - navigation.sections
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - toc.follow
+  palette:
+    - scheme: default
+      primary: black
+      accent: blue
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - footnotes
+  - md_in_html
+  - meta
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      permalink: true
+
+plugins:
+  - search:
+      lang: en
+
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Agentic-User-Mandate-Protocol
+
+copyright: Copyright 2026 Agentic User Mandate Protocol. Licensed under Apache-2.0.

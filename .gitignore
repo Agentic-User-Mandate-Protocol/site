@@ -1,1 +1,4 @@
 .wrangler/
+.venv/
+__pycache__/
+public/
