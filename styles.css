@@ -254,6 +254,7 @@ p {
 }
 
 .protocol-map,
+.integration,
 .workbench,
 .evaluator,
 #bridges,
@@ -264,14 +265,16 @@ p {
 }
 
 .map-grid,
-.rule-grid {
+.rule-grid,
+.integration-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
 
 .map-grid article,
-.rule-grid article {
+.rule-grid article,
+.integration-grid article {
   min-height: 190px;
   padding: 18px;
   border: 1px solid var(--line);
@@ -300,6 +303,26 @@ p {
 .map-grid .mandate-node span {
   background: #dff5ed;
   color: var(--green);
+}
+
+.integration-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.integration-grid article {
+  min-height: 170px;
+}
+
+.integration-grid span {
+  display: inline-grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 0.8rem;
+  border-radius: 999px;
+  background: #dff5ed;
+  color: var(--green);
+  font-weight: 800;
 }
 
 .section-head {
@@ -403,7 +426,8 @@ button:focus-visible {
 }
 
 #decision-output,
-.commands pre {
+.commands pre,
+.code-pair pre {
   margin: 0;
   padding: 1rem;
   border: 1px solid var(--line);
@@ -426,6 +450,13 @@ button:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
+}
+
+.code-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 16px;
 }
 
 .timeline {
@@ -489,8 +520,10 @@ button:focus-visible {
   }
 
   .map-grid,
+  .integration-grid,
   .rule-grid,
-  .commands {
+  .commands,
+  .code-pair {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -501,8 +534,10 @@ button:focus-visible {
   }
 
   .map-grid,
+  .integration-grid,
   .rule-grid,
   .commands,
+  .code-pair,
   .timeline li {
     grid-template-columns: 1fr;
   }

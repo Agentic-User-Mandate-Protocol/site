@@ -8,6 +8,7 @@ This repo is intentionally static for the first public pass. Open
 ## What It Covers
 
 - where AUMP fits beside MCP, A2A, UCP, and AP2;
+- how to place AUMP inside an LLM agent loop before tools, agent messages, checkout, and payment;
 - how to run the conformance contract;
 - how the Go, Python, and TypeScript implementations consume the conformance fixtures;
 - what the marketplace proof demonstrates for agentic commerce;
