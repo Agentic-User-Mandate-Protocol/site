@@ -17,13 +17,22 @@ uv sync
 uv run aump-examples marketplace
 ```
 
+After package publishing is configured:
+
+```bash
+uv tool install aump-examples
+aump-examples marketplace
+```
+
 ## Scenarios
 
 The proof executes:
 
 - buyer offers 3 USD for 19 ping pong balls under a delegated mandate;
 - offer is sent as an A2A-shaped message with AUMP metadata;
-- seller receives the message and records evidence;
+- seller validates the A2A mandate reference before recording evidence;
+- tampered mandate hashes and full private-mandate leaks are rejected before
+  seller evidence is written;
 - buyer accepts only after an MCP-shaped `aump.evaluate_action` decision is
   `allowed`;
 - 7 USD offer is denied by the buyer budget;

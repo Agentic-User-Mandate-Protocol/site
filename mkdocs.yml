@@ -40,6 +40,7 @@ nav:
   - Examples:
       - Marketplace Proof: examples/marketplace.md
   - Security: security.md
+  - Release: release.md
   - Governance: governance.md
   - Roadmap: roadmap.md
 

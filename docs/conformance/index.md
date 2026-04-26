@@ -24,7 +24,20 @@ AUMP v0.1 conformance v0.1.0 (spec 0.1.0)
 ```
 
 The Go runner is the primary executable. A Python parity runner is included for
-SDK authors and cross-checking.
+SDK authors, CI systems, and global installation.
+
+## Installed Runner
+
+After package publishing is configured:
+
+```bash
+uv tool install aump-conformance
+aump-conformance validate
+```
+
+The installed command uses the bundled fixture corpus by default, so CI does
+not need a checked-out copy of the conformance repository just to run the
+contract.
 
 ## Fixture Categories
 
@@ -45,6 +58,10 @@ go run ./cmd/aump-conformance validate fixtures --format junit --output junit.xm
 
 SDKs should run the fixture manifest in CI and compare their evaluator output
 against expected decisions and reason codes.
+
+The Python package CI also builds the wheel, checks package metadata with
+Twine, installs the wheel into a clean virtual environment, and smoke-tests the
+global `aump-conformance` executable.
 
 ## What Conformance Proves
 

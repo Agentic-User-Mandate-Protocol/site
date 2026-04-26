@@ -13,10 +13,39 @@ cd aump-py
 uv sync
 ```
 
+## Install as a Tool
+
+After package publishing is configured:
+
+```bash
+uv tool install aump
+aump --help
+```
+
+Standard Python installation works as well:
+
+```bash
+pip install aump
+```
+
 ## Validate a Mandate
 
 ```bash
 uv run aump validate mandate ../conformance/fixtures/mandates/marketplace-buyer.valid.json
+```
+
+Validate an evidence event against its mandate:
+
+```bash
+uv run aump validate-evidence \
+  --mandate ../conformance/fixtures/mandates/marketplace-buyer.valid.json \
+  --event ../conformance/fixtures/events/deal-accepted.valid.json
+```
+
+Validate bridge metadata:
+
+```bash
+uv run aump validate-bridge a2a_message ../conformance/fixtures/bridges/a2a-message-mandate-ref.valid.json
 ```
 
 ## Evaluate an Action
@@ -47,11 +76,30 @@ if decision["decision"] == "allowed":
     )
 ```
 
+## A2A Runtime Helper
+
+```python
+outbound = runtime.a2a_message(
+    "aump_mnd_market_buyer_001",
+    message_id="msg_offer_001",
+    role="user",
+    parts=[{"text": "I can offer 3 USD."}],
+)
+
+validation = runtime.validate_a2a_message(outbound)
+assert validation["valid"]
+```
+
+`validate_a2a_message` checks bridge shape, extracts the mandate reference, and
+detects hash mismatches when the referenced mandate is available to the runtime.
+
 ## Test
 
 ```bash
 uv run ruff check .
 uv run pytest
+uv build
+uv run twine check dist/*
 ```
 
 The test suite prefers sibling `conformance/fixtures` when the full workspace is

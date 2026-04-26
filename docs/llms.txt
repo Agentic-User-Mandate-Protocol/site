@@ -28,3 +28,22 @@ Put `evaluate_action` before every material action. If the decision is
 `allowed`, the runtime may proceed. If it is `requires_escalation`, the runtime
 must pause and ask through a trusted channel. If it is `denied`, the runtime
 must not take the action.
+
+## Package entry points
+
+- Python CLI: `uv tool install aump`, then `aump validate`,
+  `aump validate-evidence`, `aump validate-bridge`, or
+  `aump evaluate-action`.
+- Conformance CLI: `uv tool install aump-conformance`, then
+  `aump-conformance validate`.
+- Examples CLI: `uv tool install aump-examples`, then
+  `aump-examples marketplace`.
+- TypeScript CLI: `npx @agentic-user-mandate-protocol/aump --help`.
+
+## Runtime proof
+
+The marketplace example proves the control boundary without an LLM API key. It
+builds an A2A message with an AUMP mandate reference, validates the inbound
+mandate hash, rejects full private-mandate leaks, evaluates MCP-shaped action
+calls, enforces budget and disclosure denial, escalates checkout-ready
+transitions, and appends canonical evidence events.
