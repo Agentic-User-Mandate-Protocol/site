@@ -1,7 +1,8 @@
 # Agentic User Mandate Protocol
 
-> AUMP is the portable user authority, preference, disclosure, negotiation,
-> escalation, and evidence layer for AI agents acting on behalf of a principal.
+> AUMP v0.1 is a working-draft mandate layer for user authority, preference,
+> disclosure, negotiation, escalation, and evidence in AI agents acting on
+> behalf of a principal.
 
 ## Canonical repositories
 

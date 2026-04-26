@@ -26,7 +26,7 @@ Expected output:
 
 ```text
 AUMP v0.1 conformance v0.1.0 (spec 0.1.0)
-24/24 passed
+29/29 passed
 ```
 
 Python parity runner:
@@ -68,7 +68,8 @@ uv run aump-examples marketplace
 
 The proof runs conformance first, then executes a deterministic buyer/seller
 marketplace flow that validates A2A metadata, MCP metadata, protected
-disclosure denial, budget denial, checkout escalation, and evidence events.
+disclosure denial, budget denial, checkout escalation, and canonical evidence
+events.
 
 ## What This Proves
 

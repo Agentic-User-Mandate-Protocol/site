@@ -71,6 +71,12 @@ theme:
       primary: black
       accent: blue
 
+extra_css:
+  - stylesheets/extra.css
+
+extra_javascript:
+  - assets/javascripts/copy-page.js
+
 markdown_extensions:
   - admonition
   - attr_list

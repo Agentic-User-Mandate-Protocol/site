@@ -20,7 +20,7 @@ Expected result:
 
 ```text
 AUMP v0.1 conformance v0.1.0 (spec 0.1.0)
-24/24 passed
+29/29 passed
 ```
 
 The Go runner is the primary executable. A Python parity runner is included for
@@ -33,6 +33,7 @@ SDK authors and cross-checking.
 | Schema | Valid and invalid mandates, profiles, and action evaluation payloads. |
 | Mandate | Active, inactive, expired, and malformed mandate behavior. |
 | Action | Budget, currency, authority, disclosure, confidence, and escalation decisions. |
+| Evidence | Evidence event schema, mandate matching, retention policy, and private-field leakage rejection. |
 | Bridge | MCP, A2A, and UCP/AP2 metadata boundaries. |
 
 ## Report Formats
@@ -53,6 +54,10 @@ Conformance proves that independent implementations agree on:
 - lifecycle rejection;
 - action decisions;
 - reason codes;
+- canonical evidence event validity;
+- evidence mandate-reference matching;
+- evidence retention and private-field leakage rejection;
+- SDK-level evidence semantic validation;
 - bridge metadata validity;
 - private mandate leakage rejection.
 

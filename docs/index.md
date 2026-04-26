@@ -10,6 +10,11 @@ machine-readable contract for the authority, preferences, disclosure limits,
 negotiation policy, escalation conditions, and evidence obligations of the
 principal they represent.
 
+!!! warning "Working draft"
+    AUMP v0.1 is a protocol candidate and conformance workstream, not a final
+    standard. The current goal is to harden the contract through schemas,
+    runnable conformance, SDK parity, and end-to-end examples.
+
 MCP gives agents tools. A2A gives agents a way to discover and communicate with
 other agents. UCP describes commerce capabilities and checkout surfaces. AP2
 anchors payment authorization. AUMP sits before those actions and answers a
@@ -62,10 +67,10 @@ flowchart LR
 
 | Area | Status | Repository |
 | --- | --- | --- |
-| Specification | Draft v0.1 with schemas, bindings, examples, and test vectors | [spec](https://github.com/Agentic-User-Mandate-Protocol/spec) |
-| Conformance | Native Go runner plus Python parity runner, 24 fixture cases | [conformance](https://github.com/Agentic-User-Mandate-Protocol/conformance) |
-| Python SDK | Schema validation, policy evaluation, bridge helpers, runtime | [aump-py](https://github.com/Agentic-User-Mandate-Protocol/aump-py) |
-| TypeScript SDK | Schema validation, policy evaluation, bridge helpers | [aump-js](https://github.com/Agentic-User-Mandate-Protocol/aump-js) |
+| Specification | Draft v0.1 with mandate, profile, action-evaluation, and evidence-event schemas | [spec](https://github.com/Agentic-User-Mandate-Protocol/spec) |
+| Conformance | Native Go runner plus Python parity runner, 29 fixture cases | [conformance](https://github.com/Agentic-User-Mandate-Protocol/conformance) |
+| Python SDK | Schema validation, policy evaluation, canonical evidence events, evidence semantics, bridge helpers, runtime | [aump-py](https://github.com/Agentic-User-Mandate-Protocol/aump-py) |
+| TypeScript SDK | Schema validation, policy evaluation, evidence-event schema and semantic validation, bridge helpers | [aump-js](https://github.com/Agentic-User-Mandate-Protocol/aump-js) |
 | Examples | Deterministic marketplace proof over conformance fixtures | [examples](https://github.com/Agentic-User-Mandate-Protocol/examples) |
 
 ## Design Rule

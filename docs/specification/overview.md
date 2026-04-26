@@ -24,6 +24,7 @@ For v0.1:
 - `schemas/mandate.schema.json` defines mandate payload shape.
 - `schemas/profile.schema.json` defines profile payload shape.
 - `schemas/action-evaluation.schema.json` defines action evaluation payloads.
+- `schemas/evidence-event.schema.json` defines evidence event payloads.
 
 If prose and schema conflict, implementations should follow the stricter
 requirement until the conflict is resolved.
@@ -51,4 +52,4 @@ in RFC 2119 and RFC 8174.
 | --- | --- |
 | Level 1 Parser | Parse and validate mandates and reject inactive or expired mandates. |
 | Level 2 Policy Evaluator | Perform Level 1 checks and return deterministic action decisions. |
-| Level 3 Runtime | Perform Level 2 checks, enforce revocation, append evidence, and carry AUMP references through at least one binding. |
+| Level 3 Runtime | Perform Level 2 checks, enforce revocation, append schema-valid evidence, and carry AUMP references through at least one binding. |
