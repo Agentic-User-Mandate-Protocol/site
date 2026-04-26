@@ -13,6 +13,13 @@ cd aump-js
 npm install
 ```
 
+After package publishing is configured:
+
+```bash
+npm install @agentic-user-mandate-protocol/aump
+npx @agentic-user-mandate-protocol/aump --help
+```
+
 ## Evaluate an Action
 
 ```ts
@@ -39,10 +46,22 @@ if (!result.valid) {
 }
 ```
 
+## CLI
+
+```bash
+npx @agentic-user-mandate-protocol/aump validate mandate mandate.json
+npx @agentic-user-mandate-protocol/aump validate-evidence \
+  --mandate mandate.json \
+  --event evidence-event.json
+npx @agentic-user-mandate-protocol/aump validate-bridge a2a_message a2a-message.json
+```
+
 ## Test
 
 ```bash
 npm test
+npm run lint
+npm pack --dry-run --json
 ```
 
 The tests consume the conformance fixture manifest and assert that TypeScript

@@ -72,3 +72,22 @@ an invalid fixture for full mandate leakage.
    allowed.
 3. Record the A2A message ID in evidence.
 4. Deny or escalate before sending if protected data or commitment rules apply.
+
+## Python Runtime Helper
+
+```python
+message = runtime.a2a_message(
+    "aump_mnd_market_buyer_001",
+    message_id="msg_offer_001",
+    role="user",
+    parts=[{"text": "I can offer 3 USD."}],
+)
+
+validation = runtime.validate_a2a_message(message)
+if not validation["valid"]:
+    raise ValueError(validation["errors"])
+```
+
+The reference examples use this helper in the buyer and seller agents. The
+seller rejects tampered mandate hashes and full private-mandate leaks before it
+appends evidence.

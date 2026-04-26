@@ -50,6 +50,28 @@ runtime.append_evidence(
 )
 ```
 
+## A2A Message Shape
+
+When an agent sends an A2A message, the runtime should attach only a mandate
+reference. The full private mandate remains local.
+
+```python
+outbound = runtime.a2a_message(
+    mandate_id,
+    message_id="msg_offer_001",
+    role="user",
+    parts=[{"text": "I can offer 3 USD."}],
+)
+
+validation = receiver_runtime.validate_a2a_message(outbound)
+if not validation["valid"]:
+    return {"blocked": True, "errors": validation["errors"]}
+```
+
+The receiving runtime checks the bridge shape, resolves the mandate reference
+when it can, and rejects hash mismatches or embedded private mandates before
+writing seller-side evidence.
+
 ## TypeScript Shape
 
 ```ts
@@ -82,3 +104,7 @@ Call `evaluate_action` before:
 Prompt text can explain the user's wishes to a model, but it cannot provide a
 deterministic audit boundary. AUMP enforcement must happen in code, outside the
 LLM output channel.
+
+An LLM API key is not needed to prove the conformance boundary. Keys are only
+needed when testing model quality, negotiation behavior, prompt-injection
+resistance, or provider-specific tool calling on top of this runtime loop.
